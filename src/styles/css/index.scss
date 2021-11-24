@@ -1,0 +1,116 @@
+@import "./variables";
+/**
+ * Table Of Content
+ *
+ *  1. Globals
+ *  2. Headers
+ *  3. Navigations
+ *  4. Banners
+ *  5. Footers
+ *  6. Posts
+ *  7. Widgets
+ *  8. Custom Templates
+ */
+
+ @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/******************* 
+Global Styles 
+*******************/
+
+* {
+    outline: none;
+    
+}
+
+body {
+    font-family: $bodyfont;
+    margin: 0;
+    overflow-x: hidden;
+    color: $black;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+    background: $white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; 
+}
+a{
+    color:inherit;
+}
+a:hover,
+a:focus {
+    text-decoration: none;
+} 
+
+a.link {
+    color: inherit;
+    &:hover,
+    &:focus {
+        color: $themecolor;
+    }
+}
+
+.img-responsive {
+    width: 100%;
+    height: auto;
+    display: inline-block;
+}
+
+.img-rounded {
+    border-radius: 4px;
+}
+
+* {
+    outline: none;
+    
+}
+
+#root{
+    height: 100%;
+}
+
+.app {
+    display: flex;
+    height: 100%;
+}
+
+/* Layout */
+.ant-layout{
+    background: $white;
+}
+
+/*Header */
+.ant-layout-header {
+    height: 64px;
+    padding: 0 50px;
+    color: inherit;
+    line-height: 64px;
+    background: $white;
+    border-bottom: 1px solid $border-light;
+}
+
+/* Sidebar */
+.ant-layout-sider {
+    position: relative;
+    min-width: 0;
+    background: $dark-grey;
+    transition: all 0.2s;
+    .ant-menu.ant-menu-dark, .ant-menu-dark .ant-menu-sub, .ant-menu.ant-menu-dark .ant-menu-sub {
+        color: rgba(255, 255, 255, 0.65);
+        background: $dark-grey;
+    }
+    .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
+        background-color: #30323a;
+        border-left: 4px solid $light-violet;
+        .ant-menu-item-icon, .ant-menu-title-content{
+            color: $light-violet;
+        }
+    }
+}
+
+
