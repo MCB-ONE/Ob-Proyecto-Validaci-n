@@ -3,8 +3,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 import LoginPage from '../Pages/LoginPage';
-import NotFoundPage from '../Pages/NotFoundPage';
 import SettingsPage from '../Pages/SettingsPage';
+import NotFoundPage from '../Pages/NotFoundPage';
 import UsersPage from '../Pages/UsersPage';
 import AppHeader from './layout/AppHeader';
 /* import AppLayout from './layout/AppLayout'; */
