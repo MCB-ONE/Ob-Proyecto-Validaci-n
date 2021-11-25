@@ -5,13 +5,13 @@ const {
     Content,
    } = Layout;
 
-function UsersPage() {
+function SettingsPage() {
     return (
       <Layout>
 
         <Content style={{ margin: '24px 16px 0' }}>
           <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-            <h1>USUARIOS</h1>
+            <h1>SETINGS</h1>
             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. .</p>
             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
           </div>
@@ -20,4 +20,4 @@ function UsersPage() {
     );
 }
 
-export default UsersPage;
+export default SettingsPage;

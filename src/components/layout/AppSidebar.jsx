@@ -32,7 +32,9 @@ const AppSidebar = () => {
         </Menu.Item>
         <Divider />
         <Menu.Item key="2" icon={<SettingOutlined />}>
-          Ajustes
+          <Link to="ajustes">
+            Ajustes
+          </Link>
         </Menu.Item>
         <Menu.Item key="3" icon={<LogoutOutlined />}>
           Salir
