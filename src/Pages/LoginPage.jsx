@@ -1,14 +1,10 @@
 import React from 'react';
-import {
- Layout,
-} from 'antd';
-
 import '../styles/css/loginPage.scss';
 import LoginForm from '../components/forms/LoginForm';
 
 function LoginPage() {
   return (
-    <Layout className="login-page row">
+    <>
       <div className="background-layer">
         <h1 className="logo">
           Check
@@ -25,7 +21,7 @@ function LoginPage() {
           <LoginForm />
         </div>
       </div>
-    </Layout>
+    </>
   );
 }
 

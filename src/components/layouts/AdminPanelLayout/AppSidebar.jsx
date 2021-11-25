@@ -4,7 +4,7 @@ import { LogoutOutlined, UsergroupAddOutlined, SettingOutlined } from '@ant-desi
 import { Link } from 'react-router-dom';
 
 /** Import Styles */
-import '../../styles/css/sidebar.scss';
+import '../../../styles/css/sidebar.scss';
 
 const { Sider } = Layout;
 
