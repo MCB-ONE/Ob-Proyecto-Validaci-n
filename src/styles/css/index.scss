@@ -22,16 +22,6 @@ Global Styles
     outline: none;
     
 }
-
-body {
-    font-family: $bodyfont;
-    margin: 0;
-    overflow-x: hidden;
-    color: $black;
-    font-weight: 300;
-    font-size: 14px;
-}
-
 html {
     position: relative;
     min-height: 100%;
@@ -39,6 +29,16 @@ html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale; 
 }
+
+body {
+    font-family: $bodyfont;
+    margin: 0;
+    overflow-x: hidden;
+    color: $black;
+    font-weight: 300;
+    font-size: 20px;
+}
+
 a{
     color:inherit;
 }
@@ -51,7 +51,7 @@ a.link {
     color: inherit;
     &:hover,
     &:focus {
-        color: $themecolor;
+        color: $blue;
     }
 }
 
@@ -84,33 +84,8 @@ a.link {
     background: $white;
 }
 
-/*Header */
-.ant-layout-header {
-    height: 64px;
-    padding: 0 50px;
-    color: inherit;
-    line-height: 64px;
-    background: $white;
-    border-bottom: 1px solid $border-light;
+.ant-layout-content{
+    background-color: $light-blue;
+    margin: 0 !important;
+    margin: 24px 16px 0px;
 }
-
-/* Sidebar */
-.ant-layout-sider {
-    position: relative;
-    min-width: 0;
-    background: $dark-grey;
-    transition: all 0.2s;
-    .ant-menu.ant-menu-dark, .ant-menu-dark .ant-menu-sub, .ant-menu.ant-menu-dark .ant-menu-sub {
-        color: rgba(255, 255, 255, 0.65);
-        background: $dark-grey;
-    }
-    .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
-        background-color: #30323a;
-        border-left: 4px solid $light-violet;
-        .ant-menu-item-icon, .ant-menu-title-content{
-            color: $light-violet;
-        }
-    }
-}
-
-

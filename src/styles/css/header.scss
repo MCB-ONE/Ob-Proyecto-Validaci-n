@@ -1,0 +1,23 @@
+// Variables
+@import "./variables";
+/*Header */
+.ant-layout-header {
+    height: 64px;
+    line-height: 1.2rem !important;
+    display: flex;
+    color: inherit;
+    background: $white !important;
+    .profile{
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        .name{
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+        }
+        .role{
+            font: 0.8rem;
+        }
+    }
+}

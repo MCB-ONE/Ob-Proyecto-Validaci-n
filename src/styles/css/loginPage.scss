@@ -1,0 +1,105 @@
+@import "./variables";
+.login-page {
+    flex-flow: row !important;
+    .background-layer {
+        flex-basis: 45%;
+        background-image: url("../../../public/images/form-bg.png");
+        background-size: 105%;
+        background-repeat: no-repeat;
+        .logo {
+            color: $blue;
+            padding: 44px;
+            span {
+                color: $dark-blue;
+                margin-left: 3px;
+            }
+        }
+    }
+    .form-wrapper {
+        flex-basis: 55%;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-content: center;
+        .title {
+            color: $blue;
+            font-size: 3rem;
+            span {
+                color: $dark-blue;
+                margin-left: 3px;
+            }
+        }
+        .subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: $light-grey;
+            margin-top: -1rem;
+        }
+        .form {
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            justify-content: center;
+            form {
+                width: 100%;
+
+                margin-top: 2rem;
+            }
+            input[type="text"] {
+                background-color: inherit;
+                border: none;
+                border-bottom: 2px solid $blue;
+                border-top: 0px;
+                border-radius: 0px;
+                font-weight: bold;
+                outline: 0;
+                margin-bottom: 20px;
+                padding-left:  5px;
+                color: #ecf0f5;
+            }
+
+            input[type="password"] {
+                background-color: inherit;
+                border: none;
+                border-bottom: 2px solid $blue;
+                border-top: 0px;
+                border-radius: 0px;
+                font-weight: bold;
+                outline: 0;
+                padding-left: 5px;
+                margin-bottom: 20px;
+                color: #ecf0f5;
+            }
+
+            .form-group {
+                margin-bottom: 40px;
+                outline: 0px;
+            }
+
+            .form-control:focus {
+                border-color: inherit;
+                -webkit-box-shadow: none;
+                box-shadow: none;
+                border-bottom: 2px solid $blue;
+                outline: 0;
+                background-color: $dark-blue;
+                color: #ecf0f5;
+            }
+
+            input:focus {
+                outline: none;
+                box-shadow: 0 0 0;
+            }
+
+            label {
+                margin-bottom: 0px;
+            }
+
+            .form-control-label {
+                color: $black;
+                font-weight: 500;
+                letter-spacing: 1px;
+            }
+        }
+    }
+}

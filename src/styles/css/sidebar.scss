@@ -1,0 +1,69 @@
+@import "./variables";
+/* Sidebar */
+.ant-layout-sider {
+    position: relative;
+    min-width: 0;
+    background: $white !important;
+    transition: all 0.2s;
+    @media (min-width: 1020px) { 
+        flex: 0 0 15% !important;
+        max-width: 15% !important;
+        min-width: 15% !important;
+        width: 15% !important;
+    }
+    .titulo{
+        height: 128px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        text-align: center;
+        background-color: $blue;
+        h1{
+            color: $white;
+        }
+    }
+    .ant-menu-inline {
+        margin-top: 3rem;
+    }
+    .ant-menu-item{
+        color: $light-grey;
+        font-size: 1.2rem;
+        height: 50px !important;
+        .anticon-usergroup-add{
+           svg{
+            font-size: 22px;
+           }
+        }
+        svg{
+            font-size: 1.2rem;
+        }
+        &:hover{
+            color: $blue !important;
+        }
+        a{
+            &:hover{
+                color: $blue !important;
+            }
+        }
+    }
+    .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+        background-color: $white;
+        border-right-color:$blue;
+        box-shadow: 0px 2px 5px 1px #7a7a7a2e;
+        .ant-menu-item-icon, .ant-menu-title-content{
+            color: $blue;
+        }
+        a{
+        color: $blue;
+        }
+        &::after{
+            border-right: 3px solid $blue;
+        }
+    }
+    .ant-layout-sider-zero-width-trigger{
+        background-color: $blue;
+    }
+}
+
+
