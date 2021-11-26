@@ -1,14 +1,23 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Divider, Layout, Menu } from 'antd';
 import { LogoutOutlined, UsergroupAddOutlined, SettingOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 /** Import Styles */
 import '../../../styles/css/sidebar.scss';
+import { logout } from '../../../store/slices/auth';
 
 const { Sider } = Layout;
 
 const AppSidebar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/');
+  };
+
   return (
     <Sider
       breakpoint="lg"
@@ -36,7 +45,7 @@ const AppSidebar = () => {
             Ajustes
           </Link>
         </Menu.Item>
-        <Menu.Item key="3" icon={<LogoutOutlined />}>
+        <Menu.Item key="3" icon={<LogoutOutlined />} onClick={handleLogout}>
           Salir
         </Menu.Item>
       </Menu>

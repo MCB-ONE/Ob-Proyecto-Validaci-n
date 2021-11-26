@@ -48,7 +48,7 @@ const LoginForm = (props) => {
   };
 
   if (isLoggedIn) {
-    return <Navigate to="/usuarios" />;
+    return <Navigate to="/admin/usuarios" />;
   }
 
     return (
