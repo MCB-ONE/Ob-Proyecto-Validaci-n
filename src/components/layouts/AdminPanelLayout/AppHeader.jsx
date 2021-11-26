@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout, Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import '../../styles/css/header.scss';
+import '../../../styles/css/header.scss';
 
 const {
   Header,
