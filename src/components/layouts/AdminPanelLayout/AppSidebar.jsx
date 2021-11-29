@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Divider, Layout, Menu } from 'antd';
+import { Layout, Menu } from 'antd';
 import { LogoutOutlined, UsergroupAddOutlined, SettingOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -22,24 +22,16 @@ const AppSidebar = () => {
     <Sider
       breakpoint="lg"
       collapsedWidth="0"
-      onBreakpoint={(broken) => {
-        console.log(broken);
-      }}
-      onCollapse={(collapsed, type) => {
-        console.log(collapsed, type);
-      }}
     >
       <div className="titulo">
         <h1 className="h4 m-0">Panel de administración</h1>
       </div>
       <Menu mode="inline" defaultSelectedKeys={['1']}>
-
         <Menu.Item key="1" icon={<UsergroupAddOutlined />}>
           <Link to="usuarios">
             Usuarios
           </Link>
         </Menu.Item>
-        <Divider />
         <Menu.Item key="2" icon={<SettingOutlined />}>
           <Link to="ajustes">
             Ajustes

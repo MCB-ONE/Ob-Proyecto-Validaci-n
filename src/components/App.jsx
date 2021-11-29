@@ -17,8 +17,8 @@ import NotFoundPage from '../Pages/NotFoundPage';
 const App = () => {
   /** Extract auth info */
   const userAuth = useSelector((state) => state.auth);
-  const { isLogged } = userAuth;
-  console.log(userAuth, isLogged);
+  const { isLoggedin } = userAuth;
+  console.log(userAuth, isLoggedin);
 
   return (
     <div className="app">

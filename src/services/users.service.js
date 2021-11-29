@@ -1,13 +1,34 @@
 import axiosConfig from '../utils/config/axios.config';
 
-const getAllUsers = () => {
+const getAllUsers = (token) => {
     return axiosConfig
-        .post('/users')
+        .get('users', {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+        })
         .then((response) => {
-            if (response.data.token) {
-                localStorage.setItem('user', JSON.stringify(response.data));
-            }
-
-            return response.data;
+           return response.data;
         });
 };
+
+// Update User
+const updateUserSatatusByID = (id, token, newStatus) => {
+    const body = {
+        id,
+        newStatus,
+    };
+    const headers = {
+        Authorization: `Bearer ${token}`,
+    };
+
+    // Returns the response with a Promise
+    return axiosConfig.put(`/api/users/${id}`, body, { headers });
+};
+
+const usersService = {
+    getAllUsers,
+    updateUserSatatusByID,
+};
+
+export default usersService;
