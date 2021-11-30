@@ -1,45 +1,31 @@
 import React, { useEffect } from 'react';
-import { /* useDispatch, */ useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Layout } from 'antd';
-
-/** Slices imports */
-/* import { getAllUsers } from '../store/slices/users'; */
-import axiosConfig from '../utils/config/axios.config';
 import UserDataDetail from '../components/pure/UserDataDetail';
+/** Slices imports */
+import { getAllUsers } from '../store/slices/users';
 
 const {
   Content,
 } = Layout;
 
 function UsersPage() {
-  /* const dispatch = useDispatch(); */
   const token = useSelector((state) => state.auth.user.token);
-  /* const usersList = useSelector((state) => state.users); */
-  const [usersLists, setUsersList] = React.useState('');
+  const dispatch = useDispatch();
+  const usersData = useSelector((state) => state.users.usersList);
+  console.log(usersData);
+
   useEffect(() => {
-    axiosConfig
-      .get('users', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        setUsersList(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    dispatch(getAllUsers(token));
   }, []);
-  console.log(usersLists);
 
  return (
-
    <Layout>
      <Content style={{ margin: '24px 16px 0' }}>
        <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
          <h1>USUARIOS</h1>
          {
-            usersLists.length !== 0
+            usersData.length !== 0
               ? (
                 <table className="table">
                   <thead>
@@ -53,7 +39,7 @@ function UsersPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {usersLists.map((user) => {
+                    {usersData.map((user) => {
                       return (
                         <tr key={user.id}>
                           <UserDataDetail

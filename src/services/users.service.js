@@ -1,34 +1,30 @@
 import axiosConfig from '../utils/config/axios.config';
 
+// GetAllUsers service
 const getAllUsers = (token) => {
+    const headers = {
+        Authorization: `Bearer ${token}`,
+    };
     return axiosConfig
-        .get('users', {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-        })
+        .get('users', { headers })
         .then((response) => {
            return response.data;
         });
 };
 
-// Update User
-const updateUserSatatusByID = (id, token, newStatus) => {
-    const body = {
-        id,
-        newStatus,
-    };
-    const headers = {
-        Authorization: `Bearer ${token}`,
-    };
-
+// Update User Validation Status
+const updateUserStatusById = (id, body, headers) => {
     // Returns the response with a Promise
-    return axiosConfig.put(`/api/users/${id}`, body, { headers });
+    return axiosConfig
+    .patch(`/api/users/${id}`, body, { headers })
+    .then((response) => {
+        return response.data;
+     });
 };
 
 const usersService = {
     getAllUsers,
-    updateUserSatatusByID,
+    updateUserStatusById,
 };
 
 export default usersService;

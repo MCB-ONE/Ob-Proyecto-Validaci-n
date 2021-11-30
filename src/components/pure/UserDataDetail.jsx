@@ -1,11 +1,14 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import axiosConfig from '../../utils/config/axios.config';
+/** Slices imports */
+import { getAllUsers } from '../../store/slices/users';
 
 function UserDataDetail({ user, token }) {
-    // User data deconstrucuring
     const {
         id, name, surname, email, frontId, backId,
     } = user;
+    const dispatch = useDispatch();
     // User status
     let userStatus = 'Pendiente';
     if (user.validated === true) {
@@ -25,15 +28,19 @@ function UserDataDetail({ user, token }) {
             Authorization: `Bearer ${token}`,
         };
 
+        console.log({ headers });
+
         // Returns the response with a Promise
-        return axiosConfig.patch(`users/${id}`, body, { headers }).then((response) => {
+        return axiosConfig.patch(`users/${id}`, body, { headers })
+        .then((response) => {
             if (response.data && response.status === 200) {
                 alert(JSON.stringify(response.data));
+                dispatch(getAllUsers(token));
             } else {
                 throw new Error('User not found & no update done');
             }
         })
-        .catch((error) => alert(`Something went wrong: ${error}`));
+            .catch((error) => alert(`Something went wrong: ${error}`));
     };
 
     // Update validate field
@@ -47,14 +54,14 @@ function UserDataDetail({ user, token }) {
 
         // Returns the response with a Promise
         return axiosConfig.patch(`users/${id}`, body, { headers })
-        .then((response) => {
-            if (response.data && response.status === 200) {
-                alert(JSON.stringify(response.data));
-            } else {
-                throw new Error('User not found & no update done');
-            }
-        })
-        .catch((error) => alert(`Something went wrong: ${error}`));
+            .then((response) => {
+                if (response.data && response.status === 200) {
+                    alert(JSON.stringify(response.data));
+                } else {
+                    throw new Error('User not found & no update done');
+                }
+            })
+            .catch((error) => alert(`Something went wrong: ${error}`));
     };
 
     return (
@@ -63,10 +70,10 @@ function UserDataDetail({ user, token }) {
         <td>{`${name} ${surname}`}</td>
         <td>{email}</td>
         <td>
-          { frontId !== null ? <img src={frontId.url} alt="Parte delantera DNI" style={{ width: '150px' }} /> : <p>Sin Imagen</p>}
+          {frontId !== null ? <img src={frontId.url} alt="Parte delantera DNI" style={{ width: '150px' }} /> : <p>Sin Imagen</p>}
           ||
           {' '}
-          { backId !== null ? <img src={backId.url} alt="Parte delantera DNI" style={{ width: '150px' }} /> : <p>Sin Imagen</p>}
+          {backId !== null ? <img src={backId.url} alt="Parte delantera DNI" style={{ width: '150px' }} /> : <p>Sin Imagen</p>}
         </td>
         <td>
           {userStatus}
