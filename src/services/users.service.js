@@ -13,18 +13,22 @@ const getAllUsers = (token) => {
 };
 
 // Update User Validation Status
-const updateUserStatusById = (id, body, headers) => {
+const updateStatusById = (id, body, headers) => {
     // Returns the response with a Promise
-    return axiosConfig
-    .patch(`/api/users/${id}`, body, { headers })
+    return axiosConfig.patch(`users/${id}`, body, { headers })
     .then((response) => {
-        return response.data;
-     });
+        if (response.data && response.status === 200) {
+            console.log(JSON.stringify(response.data));
+        } else {
+            throw new Error('User not found & no update done');
+        }
+    })
+        .catch((error) => alert(`Something went wrong: ${error}`));
 };
 
 const usersService = {
     getAllUsers,
-    updateUserStatusById,
+    updateStatusById,
 };
 
 export default usersService;

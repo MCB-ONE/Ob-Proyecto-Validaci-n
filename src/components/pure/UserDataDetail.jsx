@@ -1,23 +1,29 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import axiosConfig from '../../utils/config/axios.config';
 /** Slices imports */
-import { getAllUsers } from '../../store/slices/users';
+import usersService from '../../services/users.service';
 
-function UserDataDetail({ user, token }) {
+function UserDataDetail({ user, token, reloadData }) {
     const {
         id, name, surname, email, frontId, backId,
     } = user;
-    const dispatch = useDispatch();
-    // User status
-    let userStatus = 'Pendiente';
-    if (user.validated === true) {
-        userStatus = 'Validado';
-    } else if (user.rejected === true) {
-        userStatus = 'Rechazado';
-    } else {
-        userStatus = 'Pendiente';
-    }
+    // Disabled button
+    const [disable, setDisable] = React.useState(false);
+    const [status, setStatus] = React.useState('pendiente');
+    React.useEffect(() => {
+        if (user.validated === true) {
+            setDisable(true);
+            setStatus('validado');
+        } else if (user.validated === false && user.rejected === true) {
+            setDisable(false);
+            setStatus('pendiente');
+        } else if (user.validated === false && user.rejected === false && user.restarted === true) {
+            setDisable(false);
+            setStatus('pendiente');
+        }
+        return () => {
+            reloadData();
+        };
+    }, [user.validated, setDisable]);
 
     // Update validate field
     const validateUser = () => {
@@ -28,19 +34,11 @@ function UserDataDetail({ user, token }) {
             Authorization: `Bearer ${token}`,
         };
 
-        console.log({ headers });
-
-        // Returns the response with a Promise
-        return axiosConfig.patch(`users/${id}`, body, { headers })
-        .then((response) => {
-            if (response.data && response.status === 200) {
-                alert(JSON.stringify(response.data));
-                dispatch(getAllUsers(token));
-            } else {
-                throw new Error('User not found & no update done');
-            }
-        })
-            .catch((error) => alert(`Something went wrong: ${error}`));
+        // Use the service instead of a reducer
+        usersService.updateStatusById(id, body, headers);
+        setDisable(true);
+        setStatus('validado');
+        reloadData();
     };
 
     // Update validate field
@@ -52,16 +50,27 @@ function UserDataDetail({ user, token }) {
             Authorization: `Bearer ${token}`,
         };
 
-        // Returns the response with a Promise
-        return axiosConfig.patch(`users/${id}`, body, { headers })
-            .then((response) => {
-                if (response.data && response.status === 200) {
-                    alert(JSON.stringify(response.data));
-                } else {
-                    throw new Error('User not found & no update done');
-                }
-            })
-            .catch((error) => alert(`Something went wrong: ${error}`));
+        // Use the service instead of a reducer
+        usersService.updateStatusById(id, body, headers);
+        setDisable(false);
+        setStatus('pendiente');
+        reloadData();
+    };
+
+    // Update validate field
+    const restartUser = () => {
+        const body = {
+            restarted: true,
+        };
+        const headers = {
+            Authorization: `Bearer ${token}`,
+        };
+
+        // Use the service instead of a reducer
+        usersService.updateStatusById(id, body, headers);
+        setDisable(false);
+        setStatus('pendiente');
+        reloadData();
     };
 
     return (
@@ -76,11 +85,19 @@ function UserDataDetail({ user, token }) {
           {backId !== null ? <img src={backId.url} alt="Parte delantera DNI" style={{ width: '150px' }} /> : <p>Sin Imagen</p>}
         </td>
         <td>
-          {userStatus}
+          {status}
         </td>
-        <td>
-          <button type="button" onClick={() => validateUser()} className="btn btn-primary me-3">Validar</button>
-          <button type="button" onClick={() => rejectUser()} className="btn btn-danger">Rechazar</button>
+        <td className="text-center">
+          <button
+            type="button"
+            onClick={() => validateUser()}
+            className="btn btn-primary me-3"
+            disabled={disable}
+          >
+            Validar
+          </button>
+          <button type="button" onClick={() => rejectUser()} className="btn btn-warning me-3">Rechazar</button>
+          <button type="button" onClick={() => restartUser()} className="btn btn-danger">Resetear</button>
         </td>
       </>
     );

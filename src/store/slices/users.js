@@ -10,27 +10,22 @@ export const getAllUsers = createAsyncThunk(
         try {
             const data = await UsersService.getAllUsers(token);
             console.log(data);
-            return { usersData: data };
-        } catch (error) {
-            const message = (error.response
-                && error.response.data
-                && error.response.data.message)
-              || error.message
-              || error.toString();
-            thunkAPI.dispatch(setMessage(message));
-            return thunkAPI.rejectWithValue();
-          }
-    },
-);
 
-// Update validation user status reducer action
-export const updateUserStatusById = createAsyncThunk(
-    'users/updateUserStatusById',
-    async ({ id, body, headers }, thunkAPI) => {
-        try {
-            const data = await UsersService.updateUserStatusById(id, body, headers);
-            console.log(data);
-            return { userData: data };
+            // Find admin user and delete from the data to set to the state
+            const isAdmin = data.find((element) => {
+                element.roles.forEach((role) => {
+                    if (role.name === 'ADMIN') {
+                        return element;
+                    }
+                    return element;
+                  });
+                  return element;
+              });
+            const filteredData = data.filter((user) => {
+                return user.id !== isAdmin.id;
+            });
+            console.log(filteredData);
+            return { usersData: filteredData };
         } catch (error) {
             const message = (error.response
                 && error.response.data
@@ -47,7 +42,6 @@ export const updateUserStatusById = createAsyncThunk(
 const initialState = {
     fetching: false,
     usersList: [],
-    oneUser: {},
 };
 
 const usersSlice = createSlice({
@@ -67,20 +61,6 @@ const usersSlice = createSlice({
           state.fetching = false;
           // eslint-disable-next-line no-param-reassign
           state.usersList = action.payload.usersData;
-        },
-        [updateUserStatusById.pending]: (state) => {
-            // eslint-disable-next-line no-param-reassign
-            state.fetching = true;
-        },
-        [updateUserStatusById.rejected]: (state) => {
-            // eslint-disable-next-line no-param-reassign
-            state.fetching = false;
-        },
-        [updateUserStatusById.fulfilled]: (state, action) => {
-            // eslint-disable-next-line no-param-reassign
-          state.fetching = false;
-          // eslint-disable-next-line no-param-reassign
-          state.oneUser = action.payload.userData;
         },
 
     },

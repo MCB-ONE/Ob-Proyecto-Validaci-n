@@ -79,6 +79,13 @@ a.link {
     height: 100%;
 }
 
+/* Buttons */
+.btn-primary.disabled, .btn-primary:disabled {
+    color: #fff;
+    background-color: #568197;
+    border-color: #568197;
+}
+
 /* Layout */
 .ant-layout{
     background: $white;

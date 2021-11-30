@@ -14,9 +14,12 @@ function UsersPage() {
   const dispatch = useDispatch();
   const usersData = useSelector((state) => state.users.usersList);
   console.log(usersData);
-
-  useEffect(() => {
+  // Force reload father
+  const reloadData = () => {
     dispatch(getAllUsers(token));
+  };
+  useEffect(() => {
+    reloadData();
   }, []);
 
  return (
@@ -35,7 +38,7 @@ function UsersPage() {
                       <th scope="col">Email</th>
                       <th scope="col">Imágenes</th>
                       <th scope="col">Estado</th>
-                      <th scope="col text-center">Acciones</th>
+                      <th scope="col" className="text-center">Acciones</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -45,6 +48,7 @@ function UsersPage() {
                           <UserDataDetail
                             user={user}
                             token={token}
+                            reloadData={() => reloadData()}
                           />
                         </tr>
                       );
