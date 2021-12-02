@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import {
- Routes, Route, Navigate, BrowserRouter,
+ Routes, Route, Navigate, HashRouter,
 } from 'react-router-dom';
 import AuthLayout from './layouts/authLayout/AuthLayout';
 import AdminPanelLayout from './layouts/AdminPanelLayout/AdminPanelLayout';
@@ -22,7 +22,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path="/login" element={<AuthLayout />} />
           <Route path="/" element={<Navigate replace to="/login" />} />
@@ -35,7 +35,7 @@ const App = () => {
           </Route>
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 };

@@ -10,7 +10,7 @@ import * as Yup from 'yup';
 import { login } from '../../store/slices/auth';
 import { clearMessage } from '../../store/slices/message';
 
-const LoginForm = (props) => {
+const LoginForm = (/* props */) => {
   const [loading, setLoading] = useState(false);
 
   const { isLoggedIn } = useSelector((state) => state.auth);
@@ -39,7 +39,7 @@ const LoginForm = (props) => {
     dispatch(login({ username, password }))
       .unwrap()
       .then(() => {
-        props.history.push('/profile');
+        /* props.history.push('/profile'); */
         window.location.reload();
       })
       .catch(() => {
